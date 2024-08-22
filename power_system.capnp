@@ -112,10 +112,24 @@ struct Line {
     varsDivisor @16 :Float64 = 1.0;
 }
 
+struct FloorPlan {
+    lowerLeftX @0 :Float64;
+    lowerLeftY @1 :Float64;
+    upperRightX @2 :Float64;
+    upperRightY @3 :Float64;
+
+    union {
+        imageEmbedded @4 :Data;
+        imageURL @5 :Text;
+    }
+}
+
 struct PowerSystemDataset {
     id @0 :Text;
     name @1 :Text;
     lines @2 :List(Line);
     generators @3 :List(Generator);
     transformers @4 :List(Transformer);
+
+    floorplan @5 :FloorPlan;
 }
