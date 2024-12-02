@@ -88,6 +88,8 @@ struct LineState {
     reactATo @15 :Float32;
     reactBTo @16 :Float32;
     reactCTo @17 :Float32;
+
+    lineLoadReal @18 :Float32; # for the moment we will use a single value. Normalized.
 }
 
 struct Line {
@@ -110,6 +112,8 @@ struct Line {
     voltageDivisor @14 :Float64 = 1.0;
     wattageDivisor @15 :Float64 = 1.0;
     varsDivisor @16 :Float64 = 1.0;
+
+    maxReal @17 :Float64 = 1.0; # Maximum line load. For now, a single value.
 }
 
 struct FloorPlan {
