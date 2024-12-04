@@ -29,6 +29,10 @@ struct Generator {
     voltageDivisor @7 :Float64 = 1.0;
     wattageDivisor @8 :Float64 = 1.0;
     varsDivisor @9 :Float64 = 1.0;
+
+    # Normalized coordinates
+    alternatePositionX @10 :Float64 = 0.0;
+    alternatePositionY @11 :Float64 = 0.0;
 }
 
 struct TransformerState {
@@ -62,6 +66,10 @@ struct Transformer {
     voltageDivisor @8 :Float64 = 1.0;
     wattageDivisor @9 :Float64 = 1.0;
     varsDivisor @10 :Float64 = 1.0;
+
+    # Normalized coordinates
+    alternatePositionX @11 :Float64 = 0.0;
+    alternatePositionY @12 :Float64 = 0.0;
 }
 
 struct LineState {
@@ -114,6 +122,12 @@ struct Line {
     varsDivisor @16 :Float64 = 1.0;
 
     maxReal @17 :Float64 = 1.0; # Maximum line load. For now, a single value.
+
+    # Normalized coordinates
+    alternatePositionStartX @18 :Float64 = 0.0;
+    alternatePositionStartY @19 :Float64 = 0.0;
+    alternatePositionEndX @20 :Float64 = 0.0;
+    alternatePositionEndY @21 :Float64 = 0.0;
 }
 
 struct FloorPlan {
@@ -126,6 +140,22 @@ struct FloorPlan {
         imageEmbedded @4 :Data;
         imageURL @5 :Text;
     }
+}
+
+struct Annotation {
+    positionX @0 :Float64;
+    positionY @1 :Float64;
+
+    union {
+        fixedContent @2 :Text; 
+        timeseriesContent @3 :List(Text);
+        imageEmbedded @4 :Data;
+        imageURL @5 :Text;
+    }
+
+    # Normalized coordinates
+    alternatePositionX @6 :Float64 = 0.0;
+    alternatePositionY @7 :Float64 = 0.0;
 }
 
 struct PowerSystemDataset {

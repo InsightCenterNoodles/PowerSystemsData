@@ -25,6 +25,7 @@ CAPNP_DECLARE_SCHEMA(eb656c164e6df477);
 CAPNP_DECLARE_SCHEMA(88ad8d80d51277ce);
 CAPNP_DECLARE_SCHEMA(f2caa0ba277d0648);
 CAPNP_DECLARE_SCHEMA(f84dadfd27d9ebd1);
+CAPNP_DECLARE_SCHEMA(f4388939a1a54117);
 CAPNP_DECLARE_SCHEMA(c55c7b9471811cae);
 
 }  // namespace schemas
@@ -54,7 +55,7 @@ struct Generator {
   class Pipeline;
 
   struct _capnpPrivate {
-    CAPNP_DECLARE_STRUCT_HEADER(b580cb4d916a440c, 5, 5)
+    CAPNP_DECLARE_STRUCT_HEADER(b580cb4d916a440c, 7, 5)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -84,7 +85,7 @@ struct Transformer {
   class Pipeline;
 
   struct _capnpPrivate {
-    CAPNP_DECLARE_STRUCT_HEADER(eb656c164e6df477, 5, 6)
+    CAPNP_DECLARE_STRUCT_HEADER(eb656c164e6df477, 7, 6)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -114,7 +115,7 @@ struct Line {
   class Pipeline;
 
   struct _capnpPrivate {
-    CAPNP_DECLARE_STRUCT_HEADER(f2caa0ba277d0648, 11, 7)
+    CAPNP_DECLARE_STRUCT_HEADER(f2caa0ba277d0648, 15, 7)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -134,6 +135,27 @@ struct FloorPlan {
 
   struct _capnpPrivate {
     CAPNP_DECLARE_STRUCT_HEADER(f84dadfd27d9ebd1, 5, 1)
+    #if !CAPNP_LITE
+    static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
+    #endif  // !CAPNP_LITE
+  };
+};
+
+struct Annotation {
+  Annotation() = delete;
+
+  class Reader;
+  class Builder;
+  class Pipeline;
+  enum Which: uint16_t {
+    FIXED_CONTENT,
+    TIMESERIES_CONTENT,
+    IMAGE_EMBEDDED,
+    IMAGE_U_R_L,
+  };
+
+  struct _capnpPrivate {
+    CAPNP_DECLARE_STRUCT_HEADER(f4388939a1a54117, 5, 1)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -310,6 +332,10 @@ public:
 
   inline double getVarsDivisor() const;
 
+  inline double getAlternatePositionX() const;
+
+  inline double getAlternatePositionY() const;
+
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -387,6 +413,12 @@ public:
 
   inline double getVarsDivisor();
   inline void setVarsDivisor(double value);
+
+  inline double getAlternatePositionX();
+  inline void setAlternatePositionX(double value);
+
+  inline double getAlternatePositionY();
+  inline void setAlternatePositionY(double value);
 
 private:
   ::capnp::_::StructBuilder _builder;
@@ -590,6 +622,10 @@ public:
 
   inline double getVarsDivisor() const;
 
+  inline double getAlternatePositionX() const;
+
+  inline double getAlternatePositionY() const;
+
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -674,6 +710,12 @@ public:
 
   inline double getVarsDivisor();
   inline void setVarsDivisor(double value);
+
+  inline double getAlternatePositionX();
+  inline void setAlternatePositionX(double value);
+
+  inline double getAlternatePositionY();
+  inline void setAlternatePositionY(double value);
 
 private:
   ::capnp::_::StructBuilder _builder;
@@ -927,6 +969,14 @@ public:
 
   inline double getMaxReal() const;
 
+  inline double getAlternatePositionStartX() const;
+
+  inline double getAlternatePositionStartY() const;
+
+  inline double getAlternatePositionEndX() const;
+
+  inline double getAlternatePositionEndY() const;
+
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -1036,6 +1086,18 @@ public:
 
   inline double getMaxReal();
   inline void setMaxReal(double value);
+
+  inline double getAlternatePositionStartX();
+  inline void setAlternatePositionStartX(double value);
+
+  inline double getAlternatePositionStartY();
+  inline void setAlternatePositionStartY(double value);
+
+  inline double getAlternatePositionEndX();
+  inline void setAlternatePositionEndX(double value);
+
+  inline double getAlternatePositionEndY();
+  inline void setAlternatePositionEndY(double value);
 
 private:
   ::capnp::_::StructBuilder _builder;
@@ -1167,6 +1229,148 @@ private:
 class FloorPlan::Pipeline {
 public:
   typedef FloorPlan Pipelines;
+
+  inline Pipeline(decltype(nullptr)): _typeless(nullptr) {}
+  inline explicit Pipeline(::capnp::AnyPointer::Pipeline&& typeless)
+      : _typeless(kj::mv(typeless)) {}
+
+private:
+  ::capnp::AnyPointer::Pipeline _typeless;
+  friend class ::capnp::PipelineHook;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+};
+#endif  // !CAPNP_LITE
+
+class Annotation::Reader {
+public:
+  typedef Annotation Reads;
+
+  Reader() = default;
+  inline explicit Reader(::capnp::_::StructReader base): _reader(base) {}
+
+  inline ::capnp::MessageSize totalSize() const {
+    return _reader.totalSize().asPublic();
+  }
+
+#if !CAPNP_LITE
+  inline ::kj::StringTree toString() const {
+    return ::capnp::_::structString(_reader, *_capnpPrivate::brand());
+  }
+#endif  // !CAPNP_LITE
+
+  inline Which which() const;
+  inline double getPositionX() const;
+
+  inline double getPositionY() const;
+
+  inline bool isFixedContent() const;
+  inline bool hasFixedContent() const;
+  inline  ::capnp::Text::Reader getFixedContent() const;
+
+  inline bool isTimeseriesContent() const;
+  inline bool hasTimeseriesContent() const;
+  inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Reader getTimeseriesContent() const;
+
+  inline bool isImageEmbedded() const;
+  inline bool hasImageEmbedded() const;
+  inline  ::capnp::Data::Reader getImageEmbedded() const;
+
+  inline bool isImageURL() const;
+  inline bool hasImageURL() const;
+  inline  ::capnp::Text::Reader getImageURL() const;
+
+  inline double getAlternatePositionX() const;
+
+  inline double getAlternatePositionY() const;
+
+private:
+  ::capnp::_::StructReader _reader;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::_::PointerHelpers;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::List;
+  friend class ::capnp::MessageBuilder;
+  friend class ::capnp::Orphanage;
+};
+
+class Annotation::Builder {
+public:
+  typedef Annotation Builds;
+
+  Builder() = delete;  // Deleted to discourage incorrect usage.
+                       // You can explicitly initialize to nullptr instead.
+  inline Builder(decltype(nullptr)) {}
+  inline explicit Builder(::capnp::_::StructBuilder base): _builder(base) {}
+  inline operator Reader() const { return Reader(_builder.asReader()); }
+  inline Reader asReader() const { return *this; }
+
+  inline ::capnp::MessageSize totalSize() const { return asReader().totalSize(); }
+#if !CAPNP_LITE
+  inline ::kj::StringTree toString() const { return asReader().toString(); }
+#endif  // !CAPNP_LITE
+
+  inline Which which();
+  inline double getPositionX();
+  inline void setPositionX(double value);
+
+  inline double getPositionY();
+  inline void setPositionY(double value);
+
+  inline bool isFixedContent();
+  inline bool hasFixedContent();
+  inline  ::capnp::Text::Builder getFixedContent();
+  inline void setFixedContent( ::capnp::Text::Reader value);
+  inline  ::capnp::Text::Builder initFixedContent(unsigned int size);
+  inline void adoptFixedContent(::capnp::Orphan< ::capnp::Text>&& value);
+  inline ::capnp::Orphan< ::capnp::Text> disownFixedContent();
+
+  inline bool isTimeseriesContent();
+  inline bool hasTimeseriesContent();
+  inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Builder getTimeseriesContent();
+  inline void setTimeseriesContent( ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Reader value);
+  inline void setTimeseriesContent(::kj::ArrayPtr<const  ::capnp::Text::Reader> value);
+  inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Builder initTimeseriesContent(unsigned int size);
+  inline void adoptTimeseriesContent(::capnp::Orphan< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>&& value);
+  inline ::capnp::Orphan< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>> disownTimeseriesContent();
+
+  inline bool isImageEmbedded();
+  inline bool hasImageEmbedded();
+  inline  ::capnp::Data::Builder getImageEmbedded();
+  inline void setImageEmbedded( ::capnp::Data::Reader value);
+  inline  ::capnp::Data::Builder initImageEmbedded(unsigned int size);
+  inline void adoptImageEmbedded(::capnp::Orphan< ::capnp::Data>&& value);
+  inline ::capnp::Orphan< ::capnp::Data> disownImageEmbedded();
+
+  inline bool isImageURL();
+  inline bool hasImageURL();
+  inline  ::capnp::Text::Builder getImageURL();
+  inline void setImageURL( ::capnp::Text::Reader value);
+  inline  ::capnp::Text::Builder initImageURL(unsigned int size);
+  inline void adoptImageURL(::capnp::Orphan< ::capnp::Text>&& value);
+  inline ::capnp::Orphan< ::capnp::Text> disownImageURL();
+
+  inline double getAlternatePositionX();
+  inline void setAlternatePositionX(double value);
+
+  inline double getAlternatePositionY();
+  inline void setAlternatePositionY(double value);
+
+private:
+  ::capnp::_::StructBuilder _builder;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+  friend class ::capnp::Orphanage;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::_::PointerHelpers;
+};
+
+#if !CAPNP_LITE
+class Annotation::Pipeline {
+public:
+  typedef Annotation Pipelines;
 
   inline Pipeline(decltype(nullptr)): _typeless(nullptr) {}
   inline explicit Pipeline(::capnp::AnyPointer::Pipeline&& typeless)
@@ -1666,6 +1870,34 @@ inline void Generator::Builder::setVarsDivisor(double value) {
       ::capnp::bounded<4>() * ::capnp::ELEMENTS, value, 4607182418800017408ull);
 }
 
+inline double Generator::Reader::getAlternatePositionX() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<5>() * ::capnp::ELEMENTS);
+}
+
+inline double Generator::Builder::getAlternatePositionX() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<5>() * ::capnp::ELEMENTS);
+}
+inline void Generator::Builder::setAlternatePositionX(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<5>() * ::capnp::ELEMENTS, value);
+}
+
+inline double Generator::Reader::getAlternatePositionY() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<6>() * ::capnp::ELEMENTS);
+}
+
+inline double Generator::Builder::getAlternatePositionY() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<6>() * ::capnp::ELEMENTS);
+}
+inline void Generator::Builder::setAlternatePositionY(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<6>() * ::capnp::ELEMENTS, value);
+}
+
 inline float TransformerState::Reader::getVoltAFrom() const {
   return _reader.getDataField<float>(
       ::capnp::bounded<0>() * ::capnp::ELEMENTS);
@@ -2106,6 +2338,34 @@ inline double Transformer::Builder::getVarsDivisor() {
 inline void Transformer::Builder::setVarsDivisor(double value) {
   _builder.setDataField<double>(
       ::capnp::bounded<4>() * ::capnp::ELEMENTS, value, 4607182418800017408ull);
+}
+
+inline double Transformer::Reader::getAlternatePositionX() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<5>() * ::capnp::ELEMENTS);
+}
+
+inline double Transformer::Builder::getAlternatePositionX() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<5>() * ::capnp::ELEMENTS);
+}
+inline void Transformer::Builder::setAlternatePositionX(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<5>() * ::capnp::ELEMENTS, value);
+}
+
+inline double Transformer::Reader::getAlternatePositionY() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<6>() * ::capnp::ELEMENTS);
+}
+
+inline double Transformer::Builder::getAlternatePositionY() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<6>() * ::capnp::ELEMENTS);
+}
+inline void Transformer::Builder::setAlternatePositionY(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<6>() * ::capnp::ELEMENTS, value);
 }
 
 inline float LineState::Reader::getVoltAFrom() const {
@@ -2766,6 +3026,62 @@ inline void Line::Builder::setMaxReal(double value) {
       ::capnp::bounded<10>() * ::capnp::ELEMENTS, value, 4607182418800017408ull);
 }
 
+inline double Line::Reader::getAlternatePositionStartX() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<11>() * ::capnp::ELEMENTS);
+}
+
+inline double Line::Builder::getAlternatePositionStartX() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<11>() * ::capnp::ELEMENTS);
+}
+inline void Line::Builder::setAlternatePositionStartX(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<11>() * ::capnp::ELEMENTS, value);
+}
+
+inline double Line::Reader::getAlternatePositionStartY() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<12>() * ::capnp::ELEMENTS);
+}
+
+inline double Line::Builder::getAlternatePositionStartY() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<12>() * ::capnp::ELEMENTS);
+}
+inline void Line::Builder::setAlternatePositionStartY(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<12>() * ::capnp::ELEMENTS, value);
+}
+
+inline double Line::Reader::getAlternatePositionEndX() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<13>() * ::capnp::ELEMENTS);
+}
+
+inline double Line::Builder::getAlternatePositionEndX() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<13>() * ::capnp::ELEMENTS);
+}
+inline void Line::Builder::setAlternatePositionEndX(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<13>() * ::capnp::ELEMENTS, value);
+}
+
+inline double Line::Reader::getAlternatePositionEndY() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<14>() * ::capnp::ELEMENTS);
+}
+
+inline double Line::Builder::getAlternatePositionEndY() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<14>() * ::capnp::ELEMENTS);
+}
+inline void Line::Builder::setAlternatePositionEndY(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<14>() * ::capnp::ELEMENTS, value);
+}
+
 inline  ::FloorPlan::Which FloorPlan::Reader::which() const {
   return _reader.getDataField<Which>(
       ::capnp::bounded<16>() * ::capnp::ELEMENTS);
@@ -2937,6 +3253,293 @@ inline ::capnp::Orphan< ::capnp::Text> FloorPlan::Builder::disownImageURL() {
               "Must check which() before get()ing a union member.");
   return ::capnp::_::PointerHelpers< ::capnp::Text>::disown(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+
+inline  ::Annotation::Which Annotation::Reader::which() const {
+  return _reader.getDataField<Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS);
+}
+inline  ::Annotation::Which Annotation::Builder::which() {
+  return _builder.getDataField<Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS);
+}
+
+inline double Annotation::Reader::getPositionX() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<0>() * ::capnp::ELEMENTS);
+}
+
+inline double Annotation::Builder::getPositionX() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<0>() * ::capnp::ELEMENTS);
+}
+inline void Annotation::Builder::setPositionX(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<0>() * ::capnp::ELEMENTS, value);
+}
+
+inline double Annotation::Reader::getPositionY() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<1>() * ::capnp::ELEMENTS);
+}
+
+inline double Annotation::Builder::getPositionY() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<1>() * ::capnp::ELEMENTS);
+}
+inline void Annotation::Builder::setPositionY(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<1>() * ::capnp::ELEMENTS, value);
+}
+
+inline bool Annotation::Reader::isFixedContent() const {
+  return which() == Annotation::FIXED_CONTENT;
+}
+inline bool Annotation::Builder::isFixedContent() {
+  return which() == Annotation::FIXED_CONTENT;
+}
+inline bool Annotation::Reader::hasFixedContent() const {
+  if (which() != Annotation::FIXED_CONTENT) return false;
+  return !_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline bool Annotation::Builder::hasFixedContent() {
+  if (which() != Annotation::FIXED_CONTENT) return false;
+  return !_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline  ::capnp::Text::Reader Annotation::Reader::getFixedContent() const {
+  KJ_IREQUIRE((which() == Annotation::FIXED_CONTENT),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline  ::capnp::Text::Builder Annotation::Builder::getFixedContent() {
+  KJ_IREQUIRE((which() == Annotation::FIXED_CONTENT),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline void Annotation::Builder::setFixedContent( ::capnp::Text::Reader value) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::FIXED_CONTENT);
+  ::capnp::_::PointerHelpers< ::capnp::Text>::set(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), value);
+}
+inline  ::capnp::Text::Builder Annotation::Builder::initFixedContent(unsigned int size) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::FIXED_CONTENT);
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::init(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), size);
+}
+inline void Annotation::Builder::adoptFixedContent(
+    ::capnp::Orphan< ::capnp::Text>&& value) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::FIXED_CONTENT);
+  ::capnp::_::PointerHelpers< ::capnp::Text>::adopt(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::capnp::Text> Annotation::Builder::disownFixedContent() {
+  KJ_IREQUIRE((which() == Annotation::FIXED_CONTENT),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::disown(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+
+inline bool Annotation::Reader::isTimeseriesContent() const {
+  return which() == Annotation::TIMESERIES_CONTENT;
+}
+inline bool Annotation::Builder::isTimeseriesContent() {
+  return which() == Annotation::TIMESERIES_CONTENT;
+}
+inline bool Annotation::Reader::hasTimeseriesContent() const {
+  if (which() != Annotation::TIMESERIES_CONTENT) return false;
+  return !_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline bool Annotation::Builder::hasTimeseriesContent() {
+  if (which() != Annotation::TIMESERIES_CONTENT) return false;
+  return !_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Reader Annotation::Reader::getTimeseriesContent() const {
+  KJ_IREQUIRE((which() == Annotation::TIMESERIES_CONTENT),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::get(_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Builder Annotation::Builder::getTimeseriesContent() {
+  KJ_IREQUIRE((which() == Annotation::TIMESERIES_CONTENT),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::get(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline void Annotation::Builder::setTimeseriesContent( ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Reader value) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::TIMESERIES_CONTENT);
+  ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::set(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), value);
+}
+inline void Annotation::Builder::setTimeseriesContent(::kj::ArrayPtr<const  ::capnp::Text::Reader> value) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::TIMESERIES_CONTENT);
+  ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::set(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), value);
+}
+inline  ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>::Builder Annotation::Builder::initTimeseriesContent(unsigned int size) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::TIMESERIES_CONTENT);
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::init(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), size);
+}
+inline void Annotation::Builder::adoptTimeseriesContent(
+    ::capnp::Orphan< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>&& value) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::TIMESERIES_CONTENT);
+  ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::adopt(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>> Annotation::Builder::disownTimeseriesContent() {
+  KJ_IREQUIRE((which() == Annotation::TIMESERIES_CONTENT),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::capnp::Text,  ::capnp::Kind::BLOB>>::disown(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+
+inline bool Annotation::Reader::isImageEmbedded() const {
+  return which() == Annotation::IMAGE_EMBEDDED;
+}
+inline bool Annotation::Builder::isImageEmbedded() {
+  return which() == Annotation::IMAGE_EMBEDDED;
+}
+inline bool Annotation::Reader::hasImageEmbedded() const {
+  if (which() != Annotation::IMAGE_EMBEDDED) return false;
+  return !_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline bool Annotation::Builder::hasImageEmbedded() {
+  if (which() != Annotation::IMAGE_EMBEDDED) return false;
+  return !_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline  ::capnp::Data::Reader Annotation::Reader::getImageEmbedded() const {
+  KJ_IREQUIRE((which() == Annotation::IMAGE_EMBEDDED),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::Data>::get(_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline  ::capnp::Data::Builder Annotation::Builder::getImageEmbedded() {
+  KJ_IREQUIRE((which() == Annotation::IMAGE_EMBEDDED),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::Data>::get(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline void Annotation::Builder::setImageEmbedded( ::capnp::Data::Reader value) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::IMAGE_EMBEDDED);
+  ::capnp::_::PointerHelpers< ::capnp::Data>::set(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), value);
+}
+inline  ::capnp::Data::Builder Annotation::Builder::initImageEmbedded(unsigned int size) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::IMAGE_EMBEDDED);
+  return ::capnp::_::PointerHelpers< ::capnp::Data>::init(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), size);
+}
+inline void Annotation::Builder::adoptImageEmbedded(
+    ::capnp::Orphan< ::capnp::Data>&& value) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::IMAGE_EMBEDDED);
+  ::capnp::_::PointerHelpers< ::capnp::Data>::adopt(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::capnp::Data> Annotation::Builder::disownImageEmbedded() {
+  KJ_IREQUIRE((which() == Annotation::IMAGE_EMBEDDED),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::Data>::disown(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+
+inline bool Annotation::Reader::isImageURL() const {
+  return which() == Annotation::IMAGE_U_R_L;
+}
+inline bool Annotation::Builder::isImageURL() {
+  return which() == Annotation::IMAGE_U_R_L;
+}
+inline bool Annotation::Reader::hasImageURL() const {
+  if (which() != Annotation::IMAGE_U_R_L) return false;
+  return !_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline bool Annotation::Builder::hasImageURL() {
+  if (which() != Annotation::IMAGE_U_R_L) return false;
+  return !_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline  ::capnp::Text::Reader Annotation::Reader::getImageURL() const {
+  KJ_IREQUIRE((which() == Annotation::IMAGE_U_R_L),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline  ::capnp::Text::Builder Annotation::Builder::getImageURL() {
+  KJ_IREQUIRE((which() == Annotation::IMAGE_U_R_L),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline void Annotation::Builder::setImageURL( ::capnp::Text::Reader value) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::IMAGE_U_R_L);
+  ::capnp::_::PointerHelpers< ::capnp::Text>::set(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), value);
+}
+inline  ::capnp::Text::Builder Annotation::Builder::initImageURL(unsigned int size) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::IMAGE_U_R_L);
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::init(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), size);
+}
+inline void Annotation::Builder::adoptImageURL(
+    ::capnp::Orphan< ::capnp::Text>&& value) {
+  _builder.setDataField<Annotation::Which>(
+      ::capnp::bounded<8>() * ::capnp::ELEMENTS, Annotation::IMAGE_U_R_L);
+  ::capnp::_::PointerHelpers< ::capnp::Text>::adopt(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::capnp::Text> Annotation::Builder::disownImageURL() {
+  KJ_IREQUIRE((which() == Annotation::IMAGE_U_R_L),
+              "Must check which() before get()ing a union member.");
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::disown(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+
+inline double Annotation::Reader::getAlternatePositionX() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<3>() * ::capnp::ELEMENTS);
+}
+
+inline double Annotation::Builder::getAlternatePositionX() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<3>() * ::capnp::ELEMENTS);
+}
+inline void Annotation::Builder::setAlternatePositionX(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<3>() * ::capnp::ELEMENTS, value);
+}
+
+inline double Annotation::Reader::getAlternatePositionY() const {
+  return _reader.getDataField<double>(
+      ::capnp::bounded<4>() * ::capnp::ELEMENTS);
+}
+
+inline double Annotation::Builder::getAlternatePositionY() {
+  return _builder.getDataField<double>(
+      ::capnp::bounded<4>() * ::capnp::ELEMENTS);
+}
+inline void Annotation::Builder::setAlternatePositionY(double value) {
+  _builder.setDataField<double>(
+      ::capnp::bounded<4>() * ::capnp::ELEMENTS, value);
 }
 
 inline bool PowerSystemDataset::Reader::hasId() const {
