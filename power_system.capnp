@@ -102,7 +102,9 @@ struct LineState {
     reactBTo @16 :Float32;  # Reactive power on the "to" side for phase B.
     reactCTo @17 :Float32;  # Reactive power on the "to" side for phase C.
 
-    lineLoadReal @18 :Float32; # Normalized real power load for the line.
+    lineLoadRealA @18 :Float32; # Normalized real power load A for the line.
+    lineLoadRealB @19 :Float32; # Normalized real power load B for the line.
+    lineLoadRealC @20 :Float32; # Normalized real power load C for the line.
 }
 
 # Represents a power line and its attributes.
