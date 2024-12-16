@@ -100,7 +100,7 @@ struct LineState {
   class Pipeline;
 
   struct _capnpPrivate {
-    CAPNP_DECLARE_STRUCT_HEADER(88ad8d80d51277ce, 10, 0)
+    CAPNP_DECLARE_STRUCT_HEADER(88ad8d80d51277ce, 11, 0)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -796,7 +796,11 @@ public:
 
   inline float getReactCTo() const;
 
-  inline float getLineLoadReal() const;
+  inline float getLineLoadRealA() const;
+
+  inline float getLineLoadRealB() const;
+
+  inline float getLineLoadRealC() const;
 
 private:
   ::capnp::_::StructReader _reader;
@@ -880,8 +884,14 @@ public:
   inline float getReactCTo();
   inline void setReactCTo(float value);
 
-  inline float getLineLoadReal();
-  inline void setLineLoadReal(float value);
+  inline float getLineLoadRealA();
+  inline void setLineLoadRealA(float value);
+
+  inline float getLineLoadRealB();
+  inline void setLineLoadRealB(float value);
+
+  inline float getLineLoadRealC();
+  inline void setLineLoadRealC(float value);
 
 private:
   ::capnp::_::StructBuilder _builder;
@@ -2620,18 +2630,46 @@ inline void LineState::Builder::setReactCTo(float value) {
       ::capnp::bounded<17>() * ::capnp::ELEMENTS, value);
 }
 
-inline float LineState::Reader::getLineLoadReal() const {
+inline float LineState::Reader::getLineLoadRealA() const {
   return _reader.getDataField<float>(
       ::capnp::bounded<18>() * ::capnp::ELEMENTS);
 }
 
-inline float LineState::Builder::getLineLoadReal() {
+inline float LineState::Builder::getLineLoadRealA() {
   return _builder.getDataField<float>(
       ::capnp::bounded<18>() * ::capnp::ELEMENTS);
 }
-inline void LineState::Builder::setLineLoadReal(float value) {
+inline void LineState::Builder::setLineLoadRealA(float value) {
   _builder.setDataField<float>(
       ::capnp::bounded<18>() * ::capnp::ELEMENTS, value);
+}
+
+inline float LineState::Reader::getLineLoadRealB() const {
+  return _reader.getDataField<float>(
+      ::capnp::bounded<19>() * ::capnp::ELEMENTS);
+}
+
+inline float LineState::Builder::getLineLoadRealB() {
+  return _builder.getDataField<float>(
+      ::capnp::bounded<19>() * ::capnp::ELEMENTS);
+}
+inline void LineState::Builder::setLineLoadRealB(float value) {
+  _builder.setDataField<float>(
+      ::capnp::bounded<19>() * ::capnp::ELEMENTS, value);
+}
+
+inline float LineState::Reader::getLineLoadRealC() const {
+  return _reader.getDataField<float>(
+      ::capnp::bounded<20>() * ::capnp::ELEMENTS);
+}
+
+inline float LineState::Builder::getLineLoadRealC() {
+  return _builder.getDataField<float>(
+      ::capnp::bounded<20>() * ::capnp::ELEMENTS);
+}
+inline void LineState::Builder::setLineLoadRealC(float value) {
+  _builder.setDataField<float>(
+      ::capnp::bounded<20>() * ::capnp::ELEMENTS, value);
 }
 
 inline bool Line::Reader::hasId() const {
