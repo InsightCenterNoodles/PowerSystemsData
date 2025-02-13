@@ -197,4 +197,6 @@ struct PowerSystemDataset {
     transformers @4 :List(Transformer); # Collection of transformers in the dataset.
 
     floorplan @5 :FloorPlan;          # Floor plan or map associated with the dataset.
+
+    annotations @6 :List(Annotation); # Annotations (switches, etc).
 }

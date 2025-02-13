@@ -190,7 +190,7 @@ struct PowerSystemDataset {
   class Pipeline;
 
   struct _capnpPrivate {
-    CAPNP_DECLARE_STRUCT_HEADER(c55c7b9471811cae, 0, 6)
+    CAPNP_DECLARE_STRUCT_HEADER(c55c7b9471811cae, 0, 7)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -1460,6 +1460,9 @@ public:
   inline bool hasFloorplan() const;
   inline  ::FloorPlan::Reader getFloorplan() const;
 
+  inline bool hasAnnotations() const;
+  inline  ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>::Reader getAnnotations() const;
+
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -1529,6 +1532,13 @@ public:
   inline  ::FloorPlan::Builder initFloorplan();
   inline void adoptFloorplan(::capnp::Orphan< ::FloorPlan>&& value);
   inline ::capnp::Orphan< ::FloorPlan> disownFloorplan();
+
+  inline bool hasAnnotations();
+  inline  ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>::Builder getAnnotations();
+  inline void setAnnotations( ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>::Reader value);
+  inline  ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>::Builder initAnnotations(unsigned int size);
+  inline void adoptAnnotations(::capnp::Orphan< ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>>&& value);
+  inline ::capnp::Orphan< ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>> disownAnnotations();
 
 private:
   ::capnp::_::StructBuilder _builder;
@@ -3856,6 +3866,40 @@ inline void PowerSystemDataset::Builder::adoptFloorplan(
 inline ::capnp::Orphan< ::FloorPlan> PowerSystemDataset::Builder::disownFloorplan() {
   return ::capnp::_::PointerHelpers< ::FloorPlan>::disown(_builder.getPointerField(
       ::capnp::bounded<5>() * ::capnp::POINTERS));
+}
+
+inline bool PowerSystemDataset::Reader::hasAnnotations() const {
+  return !_reader.getPointerField(
+      ::capnp::bounded<6>() * ::capnp::POINTERS).isNull();
+}
+inline bool PowerSystemDataset::Builder::hasAnnotations() {
+  return !_builder.getPointerField(
+      ::capnp::bounded<6>() * ::capnp::POINTERS).isNull();
+}
+inline  ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>::Reader PowerSystemDataset::Reader::getAnnotations() const {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>>::get(_reader.getPointerField(
+      ::capnp::bounded<6>() * ::capnp::POINTERS));
+}
+inline  ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>::Builder PowerSystemDataset::Builder::getAnnotations() {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>>::get(_builder.getPointerField(
+      ::capnp::bounded<6>() * ::capnp::POINTERS));
+}
+inline void PowerSystemDataset::Builder::setAnnotations( ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>::Reader value) {
+  ::capnp::_::PointerHelpers< ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>>::set(_builder.getPointerField(
+      ::capnp::bounded<6>() * ::capnp::POINTERS), value);
+}
+inline  ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>::Builder PowerSystemDataset::Builder::initAnnotations(unsigned int size) {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>>::init(_builder.getPointerField(
+      ::capnp::bounded<6>() * ::capnp::POINTERS), size);
+}
+inline void PowerSystemDataset::Builder::adoptAnnotations(
+    ::capnp::Orphan< ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>>&& value) {
+  ::capnp::_::PointerHelpers< ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>>::adopt(_builder.getPointerField(
+      ::capnp::bounded<6>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>> PowerSystemDataset::Builder::disownAnnotations() {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::Annotation,  ::capnp::Kind::STRUCT>>::disown(_builder.getPointerField(
+      ::capnp::bounded<6>() * ::capnp::POINTERS));
 }
 
 

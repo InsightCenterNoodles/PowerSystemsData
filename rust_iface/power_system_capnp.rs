@@ -4957,11 +4957,19 @@ pub mod power_system_dataset {
     pub fn has_floorplan(&self) -> bool {
       !self.reader.get_pointer_field(5).is_null()
     }
+    #[inline]
+    pub fn get_annotations(self) -> ::capnp::Result<::capnp::struct_list::Reader<'a,crate::power_system_capnp::annotation::Owned>> {
+      ::capnp::traits::FromPointerReader::get_from_pointer(&self.reader.get_pointer_field(6), ::core::option::Option::None)
+    }
+    #[inline]
+    pub fn has_annotations(&self) -> bool {
+      !self.reader.get_pointer_field(6).is_null()
+    }
   }
 
   pub struct Builder<'a> { builder: ::capnp::private::layout::StructBuilder<'a> }
   impl <'a,> ::capnp::traits::HasStructSize for Builder<'a,>  {
-    const STRUCT_SIZE: ::capnp::private::layout::StructSize = ::capnp::private::layout::StructSize { data: 0, pointers: 6 };
+    const STRUCT_SIZE: ::capnp::private::layout::StructSize = ::capnp::private::layout::StructSize { data: 0, pointers: 7 };
   }
   impl <'a,> ::capnp::traits::HasTypeId for Builder<'a,>  {
     const TYPE_ID: u64 = _private::TYPE_ID;
@@ -5107,6 +5115,22 @@ pub mod power_system_dataset {
     pub fn has_floorplan(&self) -> bool {
       !self.builder.is_pointer_field_null(5)
     }
+    #[inline]
+    pub fn get_annotations(self) -> ::capnp::Result<::capnp::struct_list::Builder<'a,crate::power_system_capnp::annotation::Owned>> {
+      ::capnp::traits::FromPointerBuilder::get_from_pointer(self.builder.get_pointer_field(6), ::core::option::Option::None)
+    }
+    #[inline]
+    pub fn set_annotations(&mut self, value: ::capnp::struct_list::Reader<'_,crate::power_system_capnp::annotation::Owned>) -> ::capnp::Result<()> {
+      ::capnp::traits::SetterInput::set_pointer_builder(self.builder.reborrow().get_pointer_field(6), value, false)
+    }
+    #[inline]
+    pub fn init_annotations(self, size: u32) -> ::capnp::struct_list::Builder<'a,crate::power_system_capnp::annotation::Owned> {
+      ::capnp::traits::FromPointerBuilder::init_pointer(self.builder.get_pointer_field(6), size)
+    }
+    #[inline]
+    pub fn has_annotations(&self) -> bool {
+      !self.builder.is_pointer_field_null(6)
+    }
   }
 
   pub struct Pipeline { _typeless: ::capnp::any_pointer::Pipeline }
@@ -5121,17 +5145,17 @@ pub mod power_system_dataset {
     }
   }
   mod _private {
-    pub static ENCODED_NODE: [::capnp::Word; 124] = [
+    pub static ENCODED_NODE: [::capnp::Word; 144] = [
       ::capnp::word(0, 0, 0, 0, 5, 0, 6, 0),
       ::capnp::word(174, 28, 129, 113, 148, 123, 92, 197),
       ::capnp::word(19, 0, 0, 0, 1, 0, 0, 0),
       ::capnp::word(239, 193, 125, 32, 197, 34, 149, 187),
-      ::capnp::word(6, 0, 7, 0, 0, 0, 0, 0),
+      ::capnp::word(7, 0, 7, 0, 0, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
       ::capnp::word(21, 0, 0, 0, 50, 1, 0, 0),
       ::capnp::word(37, 0, 0, 0, 7, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(33, 0, 0, 0, 87, 1, 0, 0),
+      ::capnp::word(33, 0, 0, 0, 143, 1, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
       ::capnp::word(112, 111, 119, 101, 114, 95, 115, 121),
@@ -5140,49 +5164,56 @@ pub mod power_system_dataset {
       ::capnp::word(83, 121, 115, 116, 101, 109, 68, 97),
       ::capnp::word(116, 97, 115, 101, 116, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 1, 0, 1, 0),
-      ::capnp::word(24, 0, 0, 0, 3, 0, 4, 0),
+      ::capnp::word(28, 0, 0, 0, 3, 0, 4, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
       ::capnp::word(0, 0, 1, 0, 0, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(153, 0, 0, 0, 26, 0, 0, 0),
+      ::capnp::word(181, 0, 0, 0, 26, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(148, 0, 0, 0, 3, 0, 1, 0),
-      ::capnp::word(160, 0, 0, 0, 2, 0, 1, 0),
+      ::capnp::word(176, 0, 0, 0, 3, 0, 1, 0),
+      ::capnp::word(188, 0, 0, 0, 2, 0, 1, 0),
       ::capnp::word(1, 0, 0, 0, 1, 0, 0, 0),
       ::capnp::word(0, 0, 1, 0, 1, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(157, 0, 0, 0, 42, 0, 0, 0),
+      ::capnp::word(185, 0, 0, 0, 42, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(152, 0, 0, 0, 3, 0, 1, 0),
-      ::capnp::word(164, 0, 0, 0, 2, 0, 1, 0),
+      ::capnp::word(180, 0, 0, 0, 3, 0, 1, 0),
+      ::capnp::word(192, 0, 0, 0, 2, 0, 1, 0),
       ::capnp::word(2, 0, 0, 0, 2, 0, 0, 0),
       ::capnp::word(0, 0, 1, 0, 2, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(161, 0, 0, 0, 50, 0, 0, 0),
+      ::capnp::word(189, 0, 0, 0, 50, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(156, 0, 0, 0, 3, 0, 1, 0),
-      ::capnp::word(184, 0, 0, 0, 2, 0, 1, 0),
+      ::capnp::word(184, 0, 0, 0, 3, 0, 1, 0),
+      ::capnp::word(212, 0, 0, 0, 2, 0, 1, 0),
       ::capnp::word(3, 0, 0, 0, 3, 0, 0, 0),
       ::capnp::word(0, 0, 1, 0, 3, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(181, 0, 0, 0, 90, 0, 0, 0),
+      ::capnp::word(209, 0, 0, 0, 90, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(180, 0, 0, 0, 3, 0, 1, 0),
-      ::capnp::word(208, 0, 0, 0, 2, 0, 1, 0),
+      ::capnp::word(208, 0, 0, 0, 3, 0, 1, 0),
+      ::capnp::word(236, 0, 0, 0, 2, 0, 1, 0),
       ::capnp::word(4, 0, 0, 0, 4, 0, 0, 0),
       ::capnp::word(0, 0, 1, 0, 4, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(205, 0, 0, 0, 106, 0, 0, 0),
+      ::capnp::word(233, 0, 0, 0, 106, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(204, 0, 0, 0, 3, 0, 1, 0),
-      ::capnp::word(232, 0, 0, 0, 2, 0, 1, 0),
+      ::capnp::word(232, 0, 0, 0, 3, 0, 1, 0),
+      ::capnp::word(4, 1, 0, 0, 2, 0, 1, 0),
       ::capnp::word(5, 0, 0, 0, 5, 0, 0, 0),
       ::capnp::word(0, 0, 1, 0, 5, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(229, 0, 0, 0, 82, 0, 0, 0),
+      ::capnp::word(1, 1, 0, 0, 82, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
-      ::capnp::word(228, 0, 0, 0, 3, 0, 1, 0),
-      ::capnp::word(240, 0, 0, 0, 2, 0, 1, 0),
+      ::capnp::word(0, 1, 0, 0, 3, 0, 1, 0),
+      ::capnp::word(12, 1, 0, 0, 2, 0, 1, 0),
+      ::capnp::word(6, 0, 0, 0, 6, 0, 0, 0),
+      ::capnp::word(0, 0, 1, 0, 6, 0, 0, 0),
+      ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(9, 1, 0, 0, 98, 0, 0, 0),
+      ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(8, 1, 0, 0, 3, 0, 1, 0),
+      ::capnp::word(36, 1, 0, 0, 2, 0, 1, 0),
       ::capnp::word(105, 100, 0, 0, 0, 0, 0, 0),
       ::capnp::word(12, 0, 0, 0, 0, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
@@ -5246,6 +5277,19 @@ pub mod power_system_dataset {
       ::capnp::word(16, 0, 0, 0, 0, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
       ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(97, 110, 110, 111, 116, 97, 116, 105),
+      ::capnp::word(111, 110, 115, 0, 0, 0, 0, 0),
+      ::capnp::word(14, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(0, 0, 0, 0, 3, 0, 1, 0),
+      ::capnp::word(16, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(23, 65, 165, 161, 57, 137, 56, 244),
+      ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(14, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
+      ::capnp::word(0, 0, 0, 0, 0, 0, 0, 0),
     ];
     pub fn get_field_types(index: u16) -> ::capnp::introspect::Type {
       match index {
@@ -5255,6 +5299,7 @@ pub mod power_system_dataset {
         3 => <::capnp::struct_list::Owned<crate::power_system_capnp::generator::Owned> as ::capnp::introspect::Introspect>::introspect(),
         4 => <::capnp::struct_list::Owned<crate::power_system_capnp::transformer::Owned> as ::capnp::introspect::Introspect>::introspect(),
         5 => <crate::power_system_capnp::floor_plan::Owned as ::capnp::introspect::Introspect>::introspect(),
+        6 => <::capnp::struct_list::Owned<crate::power_system_capnp::annotation::Owned> as ::capnp::introspect::Introspect>::introspect(),
         _ => panic!("invalid field index {}", index),
       }
     }
@@ -5267,9 +5312,9 @@ pub mod power_system_dataset {
       members_by_discriminant: MEMBERS_BY_DISCRIMINANT,
       members_by_name: MEMBERS_BY_NAME,
     };
-    pub static NONUNION_MEMBERS : &[u16] = &[0,1,2,3,4,5];
+    pub static NONUNION_MEMBERS : &[u16] = &[0,1,2,3,4,5,6];
     pub static MEMBERS_BY_DISCRIMINANT : &[u16] = &[];
-    pub static MEMBERS_BY_NAME : &[u16] = &[5,3,0,2,1,4];
+    pub static MEMBERS_BY_NAME : &[u16] = &[6,5,3,0,2,1,4];
     pub const TYPE_ID: u64 = 0xc55c_7b94_7181_1cae;
   }
 }
