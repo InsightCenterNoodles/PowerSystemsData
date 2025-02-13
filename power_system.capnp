@@ -173,8 +173,8 @@ struct FloorPlan {
 
 # Represents an annotation point on the power system map.
 struct Annotation {
-    positionX @0 :Float64;            # X-coordinate of the annotation in primary coordinates.
-    positionY @1 :Float64;            # Y-coordinate of the annotation in primary coordinates.
+    positionX @0 :Float64; # X-coordinate of the annotation in primary coordinates.
+    positionY @1 :Float64; # Y-coordinate of the annotation in primary coordinates.
 
     union {                           # Union allows various annotation types.
         fixedContent @2 :Text;        # Static textual annotation.
@@ -186,6 +186,28 @@ struct Annotation {
     # Normalized coordinates for alternate mapping systems.
     alternatePositionX @6 :Float64 = 0.0; 
     alternatePositionY @7 :Float64 = 0.0;
+}
+
+struct SwitchState {
+    state @0 : Bool; # Open == true, closed == false
+    fault @1 : Int8; # 0 -> Healthy, 1 -> faulted, 2-> shorted
+    # other things to add?
+    # control mode, voltage, current, thermals, switch count, last switch time
+    # health?
+}
+
+# Represents an annotation point on the power system map.
+struct Switch {
+    id @0 :Text;           # Unique identifier.
+    name @1 :Text;         # Line name.
+    positionX @2 :Float64; # X-coordinate of the annotation in primary coordinates.
+    positionY @3 :Float64; # Y-coordinate of the annotation in primary coordinates.
+
+    data @4: List(SwitchState);
+
+    # Normalized coordinates for alternate mapping systems.
+    alternatePositionX @5 :Float64 = 0.0; 
+    alternatePositionY @6 :Float64 = 0.0;
 }
 
 # Represents a complete power system dataset including generators, transformers, lines, and floor plans.
