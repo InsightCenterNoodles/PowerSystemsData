@@ -19,6 +19,24 @@ namespace capnp {
 namespace schemas {
 
 CAPNP_DECLARE_SCHEMA(b2a62ab97494c1a4);
+CAPNP_DECLARE_SCHEMA(d92d2cb960f291e1);
+enum class GeneratorType_d92d2cb960f291e1: uint16_t {
+  PHOTOVOLTAIC,
+  WIND_TURBINE,
+  HYDROELECTRIC,
+  GEOTHERMAL,
+  BIOMASS,
+  DIESEL_GENERATOR,
+  COAL_PLANT,
+  NATURAL_GAS_TURBINE,
+  NUCLEAR_REACTOR,
+  BATTERY,
+  SUPERCAPACITOR,
+  FLYWHEEL,
+  FUEL_CELL,
+  COGENERATION,
+};
+CAPNP_DECLARE_ENUM(GeneratorType, d92d2cb960f291e1);
 CAPNP_DECLARE_SCHEMA(b580cb4d916a440c);
 CAPNP_DECLARE_SCHEMA(b061391f5f413875);
 CAPNP_DECLARE_SCHEMA(eb656c164e6df477);
@@ -47,6 +65,8 @@ struct GeneratorState {
   };
 };
 
+typedef ::capnp::schemas::GeneratorType_d92d2cb960f291e1 GeneratorType;
+
 struct Generator {
   Generator() = delete;
 
@@ -55,7 +75,7 @@ struct Generator {
   class Pipeline;
 
   struct _capnpPrivate {
-    CAPNP_DECLARE_STRUCT_HEADER(b580cb4d916a440c, 7, 5)
+    CAPNP_DECLARE_STRUCT_HEADER(b580cb4d916a440c, 7, 6)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -336,6 +356,9 @@ public:
 
   inline double getAlternatePositionY() const;
 
+  inline bool hasGeneratorTypes() const;
+  inline  ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>::Reader getGeneratorTypes() const;
+
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -419,6 +442,14 @@ public:
 
   inline double getAlternatePositionY();
   inline void setAlternatePositionY(double value);
+
+  inline bool hasGeneratorTypes();
+  inline  ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>::Builder getGeneratorTypes();
+  inline void setGeneratorTypes( ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>::Reader value);
+  inline void setGeneratorTypes(::kj::ArrayPtr<const  ::GeneratorType> value);
+  inline  ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>::Builder initGeneratorTypes(unsigned int size);
+  inline void adoptGeneratorTypes(::capnp::Orphan< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>>&& value);
+  inline ::capnp::Orphan< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>> disownGeneratorTypes();
 
 private:
   ::capnp::_::StructBuilder _builder;
@@ -1906,6 +1937,44 @@ inline double Generator::Builder::getAlternatePositionY() {
 inline void Generator::Builder::setAlternatePositionY(double value) {
   _builder.setDataField<double>(
       ::capnp::bounded<6>() * ::capnp::ELEMENTS, value);
+}
+
+inline bool Generator::Reader::hasGeneratorTypes() const {
+  return !_reader.getPointerField(
+      ::capnp::bounded<5>() * ::capnp::POINTERS).isNull();
+}
+inline bool Generator::Builder::hasGeneratorTypes() {
+  return !_builder.getPointerField(
+      ::capnp::bounded<5>() * ::capnp::POINTERS).isNull();
+}
+inline  ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>::Reader Generator::Reader::getGeneratorTypes() const {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>>::get(_reader.getPointerField(
+      ::capnp::bounded<5>() * ::capnp::POINTERS));
+}
+inline  ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>::Builder Generator::Builder::getGeneratorTypes() {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>>::get(_builder.getPointerField(
+      ::capnp::bounded<5>() * ::capnp::POINTERS));
+}
+inline void Generator::Builder::setGeneratorTypes( ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>::Reader value) {
+  ::capnp::_::PointerHelpers< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>>::set(_builder.getPointerField(
+      ::capnp::bounded<5>() * ::capnp::POINTERS), value);
+}
+inline void Generator::Builder::setGeneratorTypes(::kj::ArrayPtr<const  ::GeneratorType> value) {
+  ::capnp::_::PointerHelpers< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>>::set(_builder.getPointerField(
+      ::capnp::bounded<5>() * ::capnp::POINTERS), value);
+}
+inline  ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>::Builder Generator::Builder::initGeneratorTypes(unsigned int size) {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>>::init(_builder.getPointerField(
+      ::capnp::bounded<5>() * ::capnp::POINTERS), size);
+}
+inline void Generator::Builder::adoptGeneratorTypes(
+    ::capnp::Orphan< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>>&& value) {
+  ::capnp::_::PointerHelpers< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>>::adopt(_builder.getPointerField(
+      ::capnp::bounded<5>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>> Generator::Builder::disownGeneratorTypes() {
+  return ::capnp::_::PointerHelpers< ::capnp::List< ::GeneratorType,  ::capnp::Kind::ENUM>>::disown(_builder.getPointerField(
+      ::capnp::bounded<5>() * ::capnp::POINTERS));
 }
 
 inline float TransformerState::Reader::getVoltAFrom() const {
