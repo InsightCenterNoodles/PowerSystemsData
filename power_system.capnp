@@ -18,23 +18,6 @@ struct GeneratorState {
     react @7 :Float32;  # Reactive power (kVAr).
 }
 
-enum GeneratorType {
-    photovoltaic @0;
-    windTurbine @1;
-    hydroelectric @2;
-    geothermal @3;
-    biomass @4;
-    dieselGenerator @5;
-    coalPlant @6;
-    naturalGasTurbine @7;
-    nuclearReactor @8;
-    battery @9;
-    supercapacitor @10;
-    flywheel @11;
-    fuelCell @12;
-    cogeneration @13;
-}
-
 # Represents a power system generator and its attributes.
 struct Generator {
     id @0 :Text;                      # Unique identifier.
@@ -53,8 +36,7 @@ struct Generator {
     alternatePositionX @10 :Float64 = 0.0; 
     alternatePositionY @11 :Float64 = 0.0;
 
-    # A list of participating types for this generator
-    generatorTypes @12 :List(GeneratorType);
+    type @12 :Text; # Generation type
 }
 
 # Represents the state of a transformer at a specific point in time.
