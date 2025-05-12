@@ -8,7 +8,7 @@
 
 #ifndef CAPNP_VERSION
 #error "CAPNP_VERSION is not defined, is capnp/generated-header-support.h missing?"
-#elif CAPNP_VERSION != 1000002
+#elif CAPNP_VERSION != 1001000
 #error "Version mismatch between generated code and library headers.  You must use the same version of the Cap'n Proto compiler and library."
 #endif
 
@@ -23,6 +23,8 @@ CAPNP_DECLARE_SCHEMA(b580cb4d916a440c);
 CAPNP_DECLARE_SCHEMA(b061391f5f413875);
 CAPNP_DECLARE_SCHEMA(eb656c164e6df477);
 CAPNP_DECLARE_SCHEMA(88ad8d80d51277ce);
+CAPNP_DECLARE_SCHEMA(e4ba886d23f3efba);
+CAPNP_DECLARE_SCHEMA(e0add4a45d743525);
 CAPNP_DECLARE_SCHEMA(f2caa0ba277d0648);
 CAPNP_DECLARE_SCHEMA(f84dadfd27d9ebd1);
 CAPNP_DECLARE_SCHEMA(f4388939a1a54117);
@@ -109,6 +111,36 @@ struct LineState {
   };
 };
 
+struct Color {
+  Color() = delete;
+
+  class Reader;
+  class Builder;
+  class Pipeline;
+
+  struct _capnpPrivate {
+    CAPNP_DECLARE_STRUCT_HEADER(e4ba886d23f3efba, 1, 0)
+    #if !CAPNP_LITE
+    static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
+    #endif  // !CAPNP_LITE
+  };
+};
+
+struct PhaseColors {
+  PhaseColors() = delete;
+
+  class Reader;
+  class Builder;
+  class Pipeline;
+
+  struct _capnpPrivate {
+    CAPNP_DECLARE_STRUCT_HEADER(e0add4a45d743525, 0, 3)
+    #if !CAPNP_LITE
+    static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
+    #endif  // !CAPNP_LITE
+  };
+};
+
 struct Line {
   Line() = delete;
 
@@ -117,7 +149,7 @@ struct Line {
   class Pipeline;
 
   struct _capnpPrivate {
-    CAPNP_DECLARE_STRUCT_HEADER(f2caa0ba277d0648, 15, 7)
+    CAPNP_DECLARE_STRUCT_HEADER(f2caa0ba277d0648, 15, 8)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -961,6 +993,196 @@ private:
 };
 #endif  // !CAPNP_LITE
 
+class Color::Reader {
+public:
+  typedef Color Reads;
+
+  Reader() = default;
+  inline explicit Reader(::capnp::_::StructReader base): _reader(base) {}
+
+  inline ::capnp::MessageSize totalSize() const {
+    return _reader.totalSize().asPublic();
+  }
+
+#if !CAPNP_LITE
+  inline ::kj::StringTree toString() const {
+    return ::capnp::_::structString(_reader, *_capnpPrivate::brand());
+  }
+#endif  // !CAPNP_LITE
+
+  inline  ::uint8_t getR() const;
+
+  inline  ::uint8_t getG() const;
+
+  inline  ::uint8_t getB() const;
+
+private:
+  ::capnp::_::StructReader _reader;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::_::PointerHelpers;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::List;
+  friend class ::capnp::MessageBuilder;
+  friend class ::capnp::Orphanage;
+};
+
+class Color::Builder {
+public:
+  typedef Color Builds;
+
+  Builder() = delete;  // Deleted to discourage incorrect usage.
+                       // You can explicitly initialize to nullptr instead.
+  inline Builder(decltype(nullptr)) {}
+  inline explicit Builder(::capnp::_::StructBuilder base): _builder(base) {}
+  inline operator Reader() const { return Reader(_builder.asReader()); }
+  inline Reader asReader() const { return *this; }
+
+  inline ::capnp::MessageSize totalSize() const { return asReader().totalSize(); }
+#if !CAPNP_LITE
+  inline ::kj::StringTree toString() const { return asReader().toString(); }
+#endif  // !CAPNP_LITE
+
+  inline  ::uint8_t getR();
+  inline void setR( ::uint8_t value);
+
+  inline  ::uint8_t getG();
+  inline void setG( ::uint8_t value);
+
+  inline  ::uint8_t getB();
+  inline void setB( ::uint8_t value);
+
+private:
+  ::capnp::_::StructBuilder _builder;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+  friend class ::capnp::Orphanage;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::_::PointerHelpers;
+};
+
+#if !CAPNP_LITE
+class Color::Pipeline {
+public:
+  typedef Color Pipelines;
+
+  inline Pipeline(decltype(nullptr)): _typeless(nullptr) {}
+  inline explicit Pipeline(::capnp::AnyPointer::Pipeline&& typeless)
+      : _typeless(kj::mv(typeless)) {}
+
+private:
+  ::capnp::AnyPointer::Pipeline _typeless;
+  friend class ::capnp::PipelineHook;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+};
+#endif  // !CAPNP_LITE
+
+class PhaseColors::Reader {
+public:
+  typedef PhaseColors Reads;
+
+  Reader() = default;
+  inline explicit Reader(::capnp::_::StructReader base): _reader(base) {}
+
+  inline ::capnp::MessageSize totalSize() const {
+    return _reader.totalSize().asPublic();
+  }
+
+#if !CAPNP_LITE
+  inline ::kj::StringTree toString() const {
+    return ::capnp::_::structString(_reader, *_capnpPrivate::brand());
+  }
+#endif  // !CAPNP_LITE
+
+  inline bool hasPhaseA() const;
+  inline  ::Color::Reader getPhaseA() const;
+
+  inline bool hasPhaseB() const;
+  inline  ::Color::Reader getPhaseB() const;
+
+  inline bool hasPhaseC() const;
+  inline  ::Color::Reader getPhaseC() const;
+
+private:
+  ::capnp::_::StructReader _reader;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::_::PointerHelpers;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::List;
+  friend class ::capnp::MessageBuilder;
+  friend class ::capnp::Orphanage;
+};
+
+class PhaseColors::Builder {
+public:
+  typedef PhaseColors Builds;
+
+  Builder() = delete;  // Deleted to discourage incorrect usage.
+                       // You can explicitly initialize to nullptr instead.
+  inline Builder(decltype(nullptr)) {}
+  inline explicit Builder(::capnp::_::StructBuilder base): _builder(base) {}
+  inline operator Reader() const { return Reader(_builder.asReader()); }
+  inline Reader asReader() const { return *this; }
+
+  inline ::capnp::MessageSize totalSize() const { return asReader().totalSize(); }
+#if !CAPNP_LITE
+  inline ::kj::StringTree toString() const { return asReader().toString(); }
+#endif  // !CAPNP_LITE
+
+  inline bool hasPhaseA();
+  inline  ::Color::Builder getPhaseA();
+  inline void setPhaseA( ::Color::Reader value);
+  inline  ::Color::Builder initPhaseA();
+  inline void adoptPhaseA(::capnp::Orphan< ::Color>&& value);
+  inline ::capnp::Orphan< ::Color> disownPhaseA();
+
+  inline bool hasPhaseB();
+  inline  ::Color::Builder getPhaseB();
+  inline void setPhaseB( ::Color::Reader value);
+  inline  ::Color::Builder initPhaseB();
+  inline void adoptPhaseB(::capnp::Orphan< ::Color>&& value);
+  inline ::capnp::Orphan< ::Color> disownPhaseB();
+
+  inline bool hasPhaseC();
+  inline  ::Color::Builder getPhaseC();
+  inline void setPhaseC( ::Color::Reader value);
+  inline  ::Color::Builder initPhaseC();
+  inline void adoptPhaseC(::capnp::Orphan< ::Color>&& value);
+  inline ::capnp::Orphan< ::Color> disownPhaseC();
+
+private:
+  ::capnp::_::StructBuilder _builder;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+  friend class ::capnp::Orphanage;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::_::PointerHelpers;
+};
+
+#if !CAPNP_LITE
+class PhaseColors::Pipeline {
+public:
+  typedef PhaseColors Pipelines;
+
+  inline Pipeline(decltype(nullptr)): _typeless(nullptr) {}
+  inline explicit Pipeline(::capnp::AnyPointer::Pipeline&& typeless)
+      : _typeless(kj::mv(typeless)) {}
+
+  inline  ::Color::Pipeline getPhaseA();
+  inline  ::Color::Pipeline getPhaseB();
+  inline  ::Color::Pipeline getPhaseC();
+private:
+  ::capnp::AnyPointer::Pipeline _typeless;
+  friend class ::capnp::PipelineHook;
+  template <typename, ::capnp::Kind>
+  friend struct ::capnp::ToDynamic_;
+};
+#endif  // !CAPNP_LITE
+
 class Line::Reader {
 public:
   typedef Line Reads;
@@ -1028,6 +1250,9 @@ public:
   inline double getAlternatePositionEndX() const;
 
   inline double getAlternatePositionEndY() const;
+
+  inline bool hasPhaseColors() const;
+  inline  ::PhaseColors::Reader getPhaseColors() const;
 
 private:
   ::capnp::_::StructReader _reader;
@@ -1151,6 +1376,13 @@ public:
   inline double getAlternatePositionEndY();
   inline void setAlternatePositionEndY(double value);
 
+  inline bool hasPhaseColors();
+  inline  ::PhaseColors::Builder getPhaseColors();
+  inline void setPhaseColors( ::PhaseColors::Reader value);
+  inline  ::PhaseColors::Builder initPhaseColors();
+  inline void adoptPhaseColors(::capnp::Orphan< ::PhaseColors>&& value);
+  inline ::capnp::Orphan< ::PhaseColors> disownPhaseColors();
+
 private:
   ::capnp::_::StructBuilder _builder;
   template <typename, ::capnp::Kind>
@@ -1169,6 +1401,7 @@ public:
   inline explicit Pipeline(::capnp::AnyPointer::Pipeline&& typeless)
       : _typeless(kj::mv(typeless)) {}
 
+  inline  ::PhaseColors::Pipeline getPhaseColors();
 private:
   ::capnp::AnyPointer::Pipeline _typeless;
   friend class ::capnp::PipelineHook;
@@ -2960,6 +3193,165 @@ inline void LineState::Builder::setLineLoadRealC(float value) {
       ::capnp::bounded<20>() * ::capnp::ELEMENTS, value);
 }
 
+inline  ::uint8_t Color::Reader::getR() const {
+  return _reader.getDataField< ::uint8_t>(
+      ::capnp::bounded<0>() * ::capnp::ELEMENTS);
+}
+
+inline  ::uint8_t Color::Builder::getR() {
+  return _builder.getDataField< ::uint8_t>(
+      ::capnp::bounded<0>() * ::capnp::ELEMENTS);
+}
+inline void Color::Builder::setR( ::uint8_t value) {
+  _builder.setDataField< ::uint8_t>(
+      ::capnp::bounded<0>() * ::capnp::ELEMENTS, value);
+}
+
+inline  ::uint8_t Color::Reader::getG() const {
+  return _reader.getDataField< ::uint8_t>(
+      ::capnp::bounded<1>() * ::capnp::ELEMENTS);
+}
+
+inline  ::uint8_t Color::Builder::getG() {
+  return _builder.getDataField< ::uint8_t>(
+      ::capnp::bounded<1>() * ::capnp::ELEMENTS);
+}
+inline void Color::Builder::setG( ::uint8_t value) {
+  _builder.setDataField< ::uint8_t>(
+      ::capnp::bounded<1>() * ::capnp::ELEMENTS, value);
+}
+
+inline  ::uint8_t Color::Reader::getB() const {
+  return _reader.getDataField< ::uint8_t>(
+      ::capnp::bounded<2>() * ::capnp::ELEMENTS);
+}
+
+inline  ::uint8_t Color::Builder::getB() {
+  return _builder.getDataField< ::uint8_t>(
+      ::capnp::bounded<2>() * ::capnp::ELEMENTS);
+}
+inline void Color::Builder::setB( ::uint8_t value) {
+  _builder.setDataField< ::uint8_t>(
+      ::capnp::bounded<2>() * ::capnp::ELEMENTS, value);
+}
+
+inline bool PhaseColors::Reader::hasPhaseA() const {
+  return !_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline bool PhaseColors::Builder::hasPhaseA() {
+  return !_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline  ::Color::Reader PhaseColors::Reader::getPhaseA() const {
+  return ::capnp::_::PointerHelpers< ::Color>::get(_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline  ::Color::Builder PhaseColors::Builder::getPhaseA() {
+  return ::capnp::_::PointerHelpers< ::Color>::get(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+#if !CAPNP_LITE
+inline  ::Color::Pipeline PhaseColors::Pipeline::getPhaseA() {
+  return  ::Color::Pipeline(_typeless.getPointerField(0));
+}
+#endif  // !CAPNP_LITE
+inline void PhaseColors::Builder::setPhaseA( ::Color::Reader value) {
+  ::capnp::_::PointerHelpers< ::Color>::set(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), value);
+}
+inline  ::Color::Builder PhaseColors::Builder::initPhaseA() {
+  return ::capnp::_::PointerHelpers< ::Color>::init(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline void PhaseColors::Builder::adoptPhaseA(
+    ::capnp::Orphan< ::Color>&& value) {
+  ::capnp::_::PointerHelpers< ::Color>::adopt(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::Color> PhaseColors::Builder::disownPhaseA() {
+  return ::capnp::_::PointerHelpers< ::Color>::disown(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+
+inline bool PhaseColors::Reader::hasPhaseB() const {
+  return !_reader.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS).isNull();
+}
+inline bool PhaseColors::Builder::hasPhaseB() {
+  return !_builder.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS).isNull();
+}
+inline  ::Color::Reader PhaseColors::Reader::getPhaseB() const {
+  return ::capnp::_::PointerHelpers< ::Color>::get(_reader.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS));
+}
+inline  ::Color::Builder PhaseColors::Builder::getPhaseB() {
+  return ::capnp::_::PointerHelpers< ::Color>::get(_builder.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS));
+}
+#if !CAPNP_LITE
+inline  ::Color::Pipeline PhaseColors::Pipeline::getPhaseB() {
+  return  ::Color::Pipeline(_typeless.getPointerField(1));
+}
+#endif  // !CAPNP_LITE
+inline void PhaseColors::Builder::setPhaseB( ::Color::Reader value) {
+  ::capnp::_::PointerHelpers< ::Color>::set(_builder.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS), value);
+}
+inline  ::Color::Builder PhaseColors::Builder::initPhaseB() {
+  return ::capnp::_::PointerHelpers< ::Color>::init(_builder.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS));
+}
+inline void PhaseColors::Builder::adoptPhaseB(
+    ::capnp::Orphan< ::Color>&& value) {
+  ::capnp::_::PointerHelpers< ::Color>::adopt(_builder.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::Color> PhaseColors::Builder::disownPhaseB() {
+  return ::capnp::_::PointerHelpers< ::Color>::disown(_builder.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS));
+}
+
+inline bool PhaseColors::Reader::hasPhaseC() const {
+  return !_reader.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS).isNull();
+}
+inline bool PhaseColors::Builder::hasPhaseC() {
+  return !_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS).isNull();
+}
+inline  ::Color::Reader PhaseColors::Reader::getPhaseC() const {
+  return ::capnp::_::PointerHelpers< ::Color>::get(_reader.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS));
+}
+inline  ::Color::Builder PhaseColors::Builder::getPhaseC() {
+  return ::capnp::_::PointerHelpers< ::Color>::get(_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS));
+}
+#if !CAPNP_LITE
+inline  ::Color::Pipeline PhaseColors::Pipeline::getPhaseC() {
+  return  ::Color::Pipeline(_typeless.getPointerField(2));
+}
+#endif  // !CAPNP_LITE
+inline void PhaseColors::Builder::setPhaseC( ::Color::Reader value) {
+  ::capnp::_::PointerHelpers< ::Color>::set(_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS), value);
+}
+inline  ::Color::Builder PhaseColors::Builder::initPhaseC() {
+  return ::capnp::_::PointerHelpers< ::Color>::init(_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS));
+}
+inline void PhaseColors::Builder::adoptPhaseC(
+    ::capnp::Orphan< ::Color>&& value) {
+  ::capnp::_::PointerHelpers< ::Color>::adopt(_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::Color> PhaseColors::Builder::disownPhaseC() {
+  return ::capnp::_::PointerHelpers< ::Color>::disown(_builder.getPointerField(
+      ::capnp::bounded<2>() * ::capnp::POINTERS));
+}
+
 inline bool Line::Reader::hasId() const {
   return !_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
@@ -3406,6 +3798,45 @@ inline double Line::Builder::getAlternatePositionEndY() {
 inline void Line::Builder::setAlternatePositionEndY(double value) {
   _builder.setDataField<double>(
       ::capnp::bounded<14>() * ::capnp::ELEMENTS, value);
+}
+
+inline bool Line::Reader::hasPhaseColors() const {
+  return !_reader.getPointerField(
+      ::capnp::bounded<7>() * ::capnp::POINTERS).isNull();
+}
+inline bool Line::Builder::hasPhaseColors() {
+  return !_builder.getPointerField(
+      ::capnp::bounded<7>() * ::capnp::POINTERS).isNull();
+}
+inline  ::PhaseColors::Reader Line::Reader::getPhaseColors() const {
+  return ::capnp::_::PointerHelpers< ::PhaseColors>::get(_reader.getPointerField(
+      ::capnp::bounded<7>() * ::capnp::POINTERS));
+}
+inline  ::PhaseColors::Builder Line::Builder::getPhaseColors() {
+  return ::capnp::_::PointerHelpers< ::PhaseColors>::get(_builder.getPointerField(
+      ::capnp::bounded<7>() * ::capnp::POINTERS));
+}
+#if !CAPNP_LITE
+inline  ::PhaseColors::Pipeline Line::Pipeline::getPhaseColors() {
+  return  ::PhaseColors::Pipeline(_typeless.getPointerField(7));
+}
+#endif  // !CAPNP_LITE
+inline void Line::Builder::setPhaseColors( ::PhaseColors::Reader value) {
+  ::capnp::_::PointerHelpers< ::PhaseColors>::set(_builder.getPointerField(
+      ::capnp::bounded<7>() * ::capnp::POINTERS), value);
+}
+inline  ::PhaseColors::Builder Line::Builder::initPhaseColors() {
+  return ::capnp::_::PointerHelpers< ::PhaseColors>::init(_builder.getPointerField(
+      ::capnp::bounded<7>() * ::capnp::POINTERS));
+}
+inline void Line::Builder::adoptPhaseColors(
+    ::capnp::Orphan< ::PhaseColors>&& value) {
+  ::capnp::_::PointerHelpers< ::PhaseColors>::adopt(_builder.getPointerField(
+      ::capnp::bounded<7>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::PhaseColors> Line::Builder::disownPhaseColors() {
+  return ::capnp::_::PointerHelpers< ::PhaseColors>::disown(_builder.getPointerField(
+      ::capnp::bounded<7>() * ::capnp::POINTERS));
 }
 
 inline  ::FloorPlan::Which FloorPlan::Reader::which() const {

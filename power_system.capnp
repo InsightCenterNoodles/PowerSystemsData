@@ -109,6 +109,18 @@ struct LineState {
     lineLoadRealC @20 :Float32; # Normalized real power load C for the line.
 }
 
+struct Color {
+    r @0: UInt8;
+    g @1: UInt8;
+    b @2: UInt8;
+}
+
+struct PhaseColors {
+    phaseA @0: Color;
+    phaseB @1: Color;
+    phaseC @2: Color;
+}
+
 # Represents a power line and its attributes.
 struct Line {
     id @0 :Text;                      # Unique identifier.
@@ -138,6 +150,8 @@ struct Line {
     alternatePositionStartY @19 :Float64 = 0.0;
     alternatePositionEndX @20 :Float64 = 0.0; 
     alternatePositionEndY @21 :Float64 = 0.0;
+
+    phaseColors @22 :PhaseColors;
 }
 
 # Represents a floor plan or geographical map associated with the power system.
